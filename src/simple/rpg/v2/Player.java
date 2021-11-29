@@ -2,12 +2,12 @@ package simple.rpg.v2;
 
 public class Player extends Unit {
 
-    Player() {
+    public Player() {
         super(2, 2);
         this.shape = "\uD83E\uDD77";
     }
 
-    void move(String direction) {
+    public void move(String direction) {
         switch (direction) {
             case "w":
                 this.x--;

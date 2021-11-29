@@ -1,12 +1,12 @@
 package simple.rpg.v2;
 
-class Unit {
+public class Unit {
 
-    int x;
-    int y;
-    String shape = "⬜";
+    public int x;
+    public int y;
+    public String shape = "⬜";
 
-    Unit(int x, int y) {
+    public Unit(int x, int y) {
         this.x = x;
         this.y = y;
     }
