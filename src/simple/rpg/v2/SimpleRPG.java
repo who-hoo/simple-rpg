@@ -116,9 +116,4 @@ public class SimpleRPG {
         System.out.println("score >>>>> " + score);
         gameOver = true;
     }
-
-    public static void main(String[] args) {
-        SimpleRPG game = new SimpleRPG();
-        game.run(game);
-    }
 }
