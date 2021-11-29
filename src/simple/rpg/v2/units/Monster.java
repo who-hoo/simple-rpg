@@ -1,4 +1,4 @@
-package simple.rpg.v2;
+package simple.rpg.v2.units;
 
 public class Monster extends Unit {
 

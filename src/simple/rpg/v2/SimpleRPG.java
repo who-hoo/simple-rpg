@@ -2,6 +2,9 @@ package simple.rpg.v2;
 
 import java.util.Random;
 import java.util.Scanner;
+import simple.rpg.v2.units.Bomb;
+import simple.rpg.v2.units.Monster;
+import simple.rpg.v2.units.Player;
 
 public class SimpleRPG {
 
