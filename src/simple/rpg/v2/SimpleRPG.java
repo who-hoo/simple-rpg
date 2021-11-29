@@ -26,6 +26,8 @@ public class SimpleRPG {
     }
 
     private void initBoard() {
+        for (String[] row : board) {
+            Arrays.fill(row, "⬜");
         }
     }
 
