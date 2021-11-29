@@ -1,6 +1,5 @@
 package simple.rpg.v2;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import simple.rpg.v2.units.Bomb;
@@ -10,7 +9,6 @@ import simple.rpg.v2.units.Player;
 public class SimpleRPG {
 
     private static final Random randomGenerator = new Random();
-    private final String[][] board = new String[5][5];
     private final Scanner joystick = new Scanner(System.in);
     private Player p;
     private Monster m;
@@ -19,42 +17,24 @@ public class SimpleRPG {
     private boolean gameOver = false;
 
     public SimpleRPG() {
-        initBoard();
+        Field.initBoard();
         createPlayer();
         createBomb();
         createMonster();
     }
 
-    private void initBoard() {
-        for (String[] row : board) {
-            Arrays.fill(row, "⬜");
-        }
-    }
-
-    private boolean isEmptySpace(int x, int y) {
-        return board[x][y].equals("⬜");
-    }
-
-    private boolean isMonster(int x, int y) {
-        return board[x][y].equals(m.REAL_SHAPE);
-    }
-
-    private boolean isBomb(int x, int y) {
-        return board[x][y].equals(b.REAL_SHAPE);
-    }
-
     private void createPlayer() {
         p = new Player();
-        board[p.x][p.y] = p.shape;
+        p.onField();
     }
 
     private void createBomb() {
-        int x = randomGenerator.nextInt(4);
-        int y = randomGenerator.nextInt(4);
+        int x = randomGenerator.nextInt(Field.size());
+        int y = randomGenerator.nextInt(Field.size());
 
-        if (isEmptySpace(x, y)) {
+        if (Field.isEmptySpace(x, y)) {
             b = new Bomb(x, y);
-            board[b.x][b.y] = b.shape;
+            b.onField();
             return;
         }
 
@@ -62,25 +42,16 @@ public class SimpleRPG {
     }
 
     private void createMonster() {
-        int x = randomGenerator.nextInt(4);
-        int y = randomGenerator.nextInt(4);
+        int x = randomGenerator.nextInt(Field.size());
+        int y = randomGenerator.nextInt(Field.size());
 
-        if (isEmptySpace(x, y)) {
+        if (Field.isEmptySpace(x, y)) {
             m = new Monster(x, y);
-            board[m.x][m.y] = m.shape;
+            m.onField();
             return;
         }
 
         createMonster();
-    }
-
-    private void print() {
-        for (String[] row : board) {
-            for (String col : row) {
-                System.out.print(col);
-            }
-            System.out.println();
-        }
     }
 
     private String getUserInput() {
@@ -93,23 +64,23 @@ public class SimpleRPG {
         int prevY = p.y;
 
         p.move(getUserInput());
-        if (isBomb(p.x, p.y)) {
+        if (Field.isBomb(p.x, p.y)) {
             gameOver();
             return;
         }
-        if (isMonster(p.x, p.y)) {
-            board[p.x][p.y] = p.shape;
-            board[prevX][prevY] = "⬜";
+        if (Field.isMonster(p.x, p.y)) {
+            p.onField();
+            Field.clean(prevX, prevY);
             score++;
             createMonster();
         }
-        board[p.x][p.y] = p.shape;
-        board[prevX][prevY] = "⬜";
+        p.onField();
+        Field.clean(prevX, prevY);
     }
 
-    public void run(SimpleRPG game) {
+    public void run() {
         while (!gameOver) {
-            game.print();
+            Field.print();
             movePlayer();
         }
     }
