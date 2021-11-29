@@ -1,5 +1,6 @@
 package simple.rpg.v2;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import simple.rpg.v2.units.Bomb;
@@ -8,48 +9,44 @@ import simple.rpg.v2.units.Player;
 
 public class SimpleRPG {
 
-    static Random randomGenerator = new Random();
-    String[][] board = new String[5][5];
-    Scanner joystick = new Scanner(System.in);
-    Player p;
-    Monster m;
-    Bomb b;
-    int score = 0;
-    boolean gameOver = false;
+    private static final Random randomGenerator = new Random();
+    private final String[][] board = new String[5][5];
+    private final Scanner joystick = new Scanner(System.in);
+    private Player p;
+    private Monster m;
+    private Bomb b;
+    private int score = 0;
+    private boolean gameOver = false;
 
-    SimpleRPG() {
+    public SimpleRPG() {
         initBoard();
         createPlayer();
         createBomb();
         createMonster();
     }
 
-    void initBoard() {
-        for (int row = 0; row < 5; row++) {
-            for (int col = 0; col < 5; col++) {
-                board[row][col] = "⬜";
-            }
+    private void initBoard() {
         }
     }
 
-    boolean isEmptySpace(int x, int y) {
+    private boolean isEmptySpace(int x, int y) {
         return board[x][y].equals("⬜");
     }
 
-    boolean isMonster(int x, int y) {
+    private boolean isMonster(int x, int y) {
         return board[x][y].equals(m.REAL_SHAPE);
     }
 
-    boolean isBomb(int x, int y) {
+    private boolean isBomb(int x, int y) {
         return board[x][y].equals(b.REAL_SHAPE);
     }
 
-    void createPlayer() {
+    private void createPlayer() {
         p = new Player();
         board[p.x][p.y] = p.shape;
     }
 
-    void createBomb() {
+    private void createBomb() {
         int x = randomGenerator.nextInt(4);
         int y = randomGenerator.nextInt(4);
 
@@ -62,7 +59,7 @@ public class SimpleRPG {
         createBomb();
     }
 
-    void createMonster() {
+    private void createMonster() {
         int x = randomGenerator.nextInt(4);
         int y = randomGenerator.nextInt(4);
 
@@ -75,7 +72,7 @@ public class SimpleRPG {
         createMonster();
     }
 
-    void print() {
+    private void print() {
         for (int row = 0; row < 5; row++) {
             for (int col = 0; col < 5; col++) {
                 System.out.print(board[row][col]);
@@ -84,12 +81,12 @@ public class SimpleRPG {
         }
     }
 
-    String getUserInput() {
+    private String getUserInput() {
         System.out.print("input direction >>>> ");
         return joystick.nextLine();
     }
 
-    void movePlayer() {
+    private void movePlayer() {
         int prevX = p.x;
         int prevY = p.y;
 
@@ -108,14 +105,14 @@ public class SimpleRPG {
         board[prevX][prevY] = "⬜";
     }
 
-    void run(SimpleRPG game) {
+    public void run(SimpleRPG game) {
         while (!gameOver) {
             game.print();
             movePlayer();
         }
     }
 
-    void gameOver() {
+    private void gameOver() {
         System.out.println("score >>>>> " + score);
         gameOver = true;
     }
