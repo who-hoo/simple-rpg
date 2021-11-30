@@ -8,6 +8,7 @@ import simple.rpg.v2.units.Unit;
 public class Field {
 
     public static final int SIZE = 5;
+    public static final int CENTER = SIZE / 2;
     private static final String[][] board = new String[SIZE][SIZE];
 
     private Field() {

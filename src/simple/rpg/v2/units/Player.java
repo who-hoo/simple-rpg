@@ -1,9 +1,11 @@
 package simple.rpg.v2.units;
 
+import simple.rpg.v2.Field;
+
 public class Player extends Unit {
 
     public Player() {
-        super(2, 2);
+        super(Field.CENTER, Field.CENTER);
         this.shape = "\uD83E\uDD77";
     }
 
