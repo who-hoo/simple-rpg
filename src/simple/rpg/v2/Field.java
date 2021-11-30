@@ -7,7 +7,7 @@ import simple.rpg.v2.units.Unit;
 
 public class Field {
 
-    private static final int SIZE = 5;
+    public static final int SIZE = 5;
     private static final String[][] board = new String[SIZE][SIZE];
 
     private Field() {
@@ -29,10 +29,6 @@ public class Field {
 
     public static boolean isBomb(int row, int col) {
         return board[row][col].equals(Bomb.REAL_SHAPE);
-    }
-
-    public static int size() {
-        return SIZE;
     }
 
     public static void put(Unit unit) {

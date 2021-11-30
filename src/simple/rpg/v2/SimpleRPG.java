@@ -29,8 +29,8 @@ public class SimpleRPG {
     }
 
     private void createBomb() {
-        int x = randomGenerator.nextInt(Field.size());
-        int y = randomGenerator.nextInt(Field.size());
+        int x = randomGenerator.nextInt(Field.SIZE);
+        int y = randomGenerator.nextInt(Field.SIZE);
 
         if (Field.isEmptySpace(x, y)) {
             b = new Bomb(x, y);
@@ -42,8 +42,8 @@ public class SimpleRPG {
     }
 
     private void createMonster() {
-        int x = randomGenerator.nextInt(Field.size());
-        int y = randomGenerator.nextInt(Field.size());
+        int x = randomGenerator.nextInt(Field.SIZE);
+        int y = randomGenerator.nextInt(Field.SIZE);
 
         if (Field.isEmptySpace(x, y)) {
             m = new Monster(x, y);
