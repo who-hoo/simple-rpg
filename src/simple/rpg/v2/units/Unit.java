@@ -6,12 +6,7 @@ public class Unit {
 
     public int x;
     public int y;
-    public String shape = "⬜";
-
-    public Unit(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
+    public String shape;
 
     public void onField() {
         Field.put(this);

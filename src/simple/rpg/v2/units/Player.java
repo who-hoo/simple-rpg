@@ -5,7 +5,9 @@ import simple.rpg.v2.Field;
 public class Player extends Unit {
 
     public Player() {
-        super(Field.CENTER, Field.CENTER);
+        super();
+        this.x = Field.CENTER;
+        this.y = Field.CENTER;
         this.shape = "\uD83E\uDD77";
     }
 

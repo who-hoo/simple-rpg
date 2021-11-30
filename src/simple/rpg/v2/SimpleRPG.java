@@ -1,6 +1,5 @@
 package simple.rpg.v2;
 
-import java.util.Random;
 import java.util.Scanner;
 import simple.rpg.v2.units.Bomb;
 import simple.rpg.v2.units.Monster;
@@ -8,7 +7,6 @@ import simple.rpg.v2.units.Player;
 
 public class SimpleRPG {
 
-    private static final Random randomGenerator = new Random();
     private final Scanner joystick = new Scanner(System.in);
     private Player p;
     private Monster m;
@@ -18,40 +16,17 @@ public class SimpleRPG {
 
     public SimpleRPG() {
         Field.initBoard();
-        createPlayer();
-        createBomb();
-        createMonster();
+        initUnits();
     }
 
-    private void createPlayer() {
+    private void initUnits() {
         p = new Player();
+        b = new Bomb();
+        m = new Monster();
+
         p.onField();
-    }
-
-    private void createBomb() {
-        int x = randomGenerator.nextInt(Field.SIZE);
-        int y = randomGenerator.nextInt(Field.SIZE);
-
-        if (Field.isEmptySpace(x, y)) {
-            b = new Bomb(x, y);
-            b.onField();
-            return;
-        }
-
-        createBomb();
-    }
-
-    private void createMonster() {
-        int x = randomGenerator.nextInt(Field.SIZE);
-        int y = randomGenerator.nextInt(Field.SIZE);
-
-        if (Field.isEmptySpace(x, y)) {
-            m = new Monster(x, y);
-            m.onField();
-            return;
-        }
-
-        createMonster();
+        b.onField();
+        m.onField();
     }
 
     private String getUserInput() {
@@ -72,7 +47,8 @@ public class SimpleRPG {
             p.onField();
             Field.clean(prevX, prevY);
             score++;
-            createMonster();
+            m = new Monster();
+            m.onField();
         }
         p.onField();
         Field.clean(prevX, prevY);
