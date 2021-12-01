@@ -30,7 +30,7 @@ public class SimpleRPG {
     }
 
     private void getUserInput() {
-        System.out.print("input direction[w(상), s(하), a(좌), d(우)] >>>> ");
+        System.out.print("input direction[w(상), s(하), a(좌), d(우), q(종료)] >>>> ");
         String input = joystick.nextLine();
         switch (input.toLowerCase()) {
             case "w":
@@ -44,6 +44,9 @@ public class SimpleRPG {
                 break;
             case "d":
                 p.moveRight();
+                break;
+            case "q":
+                System.exit(0);
                 break;
             default:
                 getUserInput();
