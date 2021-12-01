@@ -2,7 +2,10 @@ package simple.rpg.v2.units;
 
 import simple.rpg.v2.Field;
 
-public class Player extends Unit {
+public class Player extends Unit implements Movable {
+
+    public int prevX;
+    public int prevY;
 
     public Player() {
         super();
@@ -11,20 +14,31 @@ public class Player extends Unit {
         this.shape = "\uD83E\uDD77";
     }
 
-    public void move(String direction) {
-        switch (direction) {
-            case "w":
-                this.x--;
-                break;
-            case "a":
-                this.y--;
-                break;
-            case "s":
-                this.x++;
-                break;
-            case "d":
-                this.y++;
-                break;
-        }
+    @Override
+    public void moveUp() {
+        this.prevX = this.x;
+        this.prevY = this.y;
+        this.x--;
+    }
+
+    @Override
+    public void moveDown() {
+        this.prevX = this.x;
+        this.prevY = this.y;
+        this.x++;
+    }
+
+    @Override
+    public void moveLeft() {
+        this.prevX = this.x;
+        this.prevY = this.y;
+        this.y--;
+    }
+
+    @Override
+    public void moveRight() {
+        this.prevX = this.x;
+        this.prevY = this.y;
+        this.y++;
     }
 }

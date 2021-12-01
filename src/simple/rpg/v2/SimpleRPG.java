@@ -29,35 +29,49 @@ public class SimpleRPG {
         m.onField();
     }
 
-    private String getUserInput() {
-        System.out.print("input direction >>>> ");
-        return joystick.nextLine();
+    private void getUserInput() {
+        System.out.print("input direction[w(상), s(하), a(좌), d(우)] >>>> ");
+        String input = joystick.nextLine();
+        switch (input.toLowerCase()) {
+            case "w":
+                p.moveUp();
+                break;
+            case "a":
+                p.moveLeft();
+                break;
+            case "s":
+                p.moveDown();
+                break;
+            case "d":
+                p.moveRight();
+                break;
+            default:
+                getUserInput();
+        }
     }
 
-    private void movePlayer() {
-        int prevX = p.x;
-        int prevY = p.y;
-
-        p.move(getUserInput());
+    private void refresh() {
         if (Field.isBomb(p.x, p.y)) {
             gameOver();
             return;
         }
         if (Field.isMonster(p.x, p.y)) {
             p.onField();
-            Field.clean(prevX, prevY);
+            Field.clean(p.prevX, p.prevY);
             score++;
             m = new Monster();
             m.onField();
+            return;
         }
         p.onField();
-        Field.clean(prevX, prevY);
+        Field.clean(p.prevX, p.prevY);
     }
 
     public void run() {
         while (!gameOver) {
             Field.print();
-            movePlayer();
+            getUserInput();
+            refresh();
         }
     }
 
