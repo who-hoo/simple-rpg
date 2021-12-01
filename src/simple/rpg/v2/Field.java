@@ -24,11 +24,11 @@ public class Field {
     }
 
     public static boolean isMonster(int row, int col) {
-        return board[row][col].shape.equals(Monster.REAL_SHAPE);
+        return Monster.REAL_SHAPE.equals(board[row][col].shape);
     }
 
     public static boolean isBomb(int row, int col) {
-        return board[row][col].shape.equals(Bomb.REAL_SHAPE);
+        return Bomb.REAL_SHAPE.equals(board[row][col].shape);
     }
 
     public static void put(Unit unit) {
