@@ -21,11 +21,10 @@ public class SimpleRPG {
 
     private void initUnits() {
         p = new Player();
-        b = new Bomb();
-        m = new Monster();
-
         p.onField();
+        b = new Bomb();
         b.onField();
+        m = new Monster();
         m.onField();
     }
 
