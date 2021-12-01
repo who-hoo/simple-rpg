@@ -16,6 +16,9 @@ public class Player extends Unit implements Movable {
 
     @Override
     public void moveUp() {
+        if (this.x == Field.TOP_EDGE) {
+            return;
+        }
         this.prevX = this.x;
         this.prevY = this.y;
         this.x--;
@@ -23,6 +26,9 @@ public class Player extends Unit implements Movable {
 
     @Override
     public void moveDown() {
+        if (this.x == Field.BOTTOM_EDGE) {
+            return;
+        }
         this.prevX = this.x;
         this.prevY = this.y;
         this.x++;
@@ -30,6 +36,9 @@ public class Player extends Unit implements Movable {
 
     @Override
     public void moveLeft() {
+        if (this.y == Field.LEFT_EDGE) {
+            return;
+        }
         this.prevX = this.x;
         this.prevY = this.y;
         this.y--;
@@ -37,6 +46,9 @@ public class Player extends Unit implements Movable {
 
     @Override
     public void moveRight() {
+        if (this.y == Field.RIGHT_EDGE) {
+            return;
+        }
         this.prevX = this.x;
         this.prevY = this.y;
         this.y++;
