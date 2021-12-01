@@ -1,6 +1,5 @@
 package simple.rpg.v2;
 
-import java.util.Arrays;
 import simple.rpg.v2.units.Bomb;
 import simple.rpg.v2.units.Monster;
 import simple.rpg.v2.units.Unit;
@@ -15,41 +14,39 @@ public class Field {
     public static final int RIGHT_EDGE = SIZE - 1;
     public static final String EMPTY_FIELD = "⬜";
 
-    private static final String[][] board = new String[SIZE][SIZE];
+    private static final Unit[][] board = new Unit[SIZE][SIZE];
 
     private Field() {
     }
 
-    public static void initBoard() {
-        for (String[] row : board) {
-            Arrays.fill(row, EMPTY_FIELD);
-        }
-    }
-
     public static boolean isEmptySpace(int row, int col) {
-        return board[row][col].equals(EMPTY_FIELD);
+        return board[row][col] == null;
     }
 
     public static boolean isMonster(int row, int col) {
-        return board[row][col].equals(Monster.REAL_SHAPE);
+        return board[row][col].shape.equals(Monster.REAL_SHAPE);
     }
 
     public static boolean isBomb(int row, int col) {
-        return board[row][col].equals(Bomb.REAL_SHAPE);
+        return board[row][col].shape.equals(Bomb.REAL_SHAPE);
     }
 
     public static void put(Unit unit) {
-        board[unit.x][unit.y] = unit.shape;
+        board[unit.x][unit.y] = unit;
     }
 
     public static void clean(int row, int col) {
-        board[row][col] = EMPTY_FIELD;
+        board[row][col] = null;
     }
 
     public static void print() {
-        for (String[] row : board) {
-            for (String col : row) {
-                System.out.print(col);
+        for (Unit[] row : board) {
+            for (Unit col : row) {
+                try {
+                    System.out.print(col.shape);
+                } catch (NullPointerException e) {
+                    System.out.print(EMPTY_FIELD);
+                }
             }
             System.out.println();
         }
@@ -58,7 +55,11 @@ public class Field {
     public static void printGameOver() {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
-                System.out.print(isBomb(row, col) ? "\uD83D\uDCA3" : "\uD83D\uDCA5");
+                try {
+                    System.out.print(isBomb(row, col) ? "\uD83D\uDCA3" : "\uD83D\uDCA5");
+                } catch (NullPointerException e) {
+                    System.out.print("\uD83D\uDCA5");
+                }
             }
             System.out.println();
         }

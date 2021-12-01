@@ -15,7 +15,6 @@ public class SimpleRPG {
     private boolean gameOver = false;
 
     public SimpleRPG() {
-        Field.initBoard();
         initUnits();
     }
 
@@ -53,6 +52,10 @@ public class SimpleRPG {
     }
 
     private void refresh() {
+        if (Field.isEmptySpace(p.x, p.y)) {
+            p.onField();
+            Field.clean(p.prevX, p.prevY);
+        }
         if (Field.isBomb(p.x, p.y)) {
             gameOver();
             return;
@@ -63,10 +66,7 @@ public class SimpleRPG {
             score++;
             m = new Monster();
             m.onField();
-            return;
         }
-        p.onField();
-        Field.clean(p.prevX, p.prevY);
     }
 
     public void run() {
