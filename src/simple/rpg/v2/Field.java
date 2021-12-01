@@ -13,6 +13,8 @@ public class Field {
     public static final int LEFT_EDGE = 0;
     public static final int BOTTOM_EDGE = SIZE - 1;
     public static final int RIGHT_EDGE = SIZE - 1;
+    public static final String EMPTY_FIELD = "⬜";
+
     private static final String[][] board = new String[SIZE][SIZE];
 
     private Field() {
@@ -20,12 +22,12 @@ public class Field {
 
     public static void initBoard() {
         for (String[] row : board) {
-            Arrays.fill(row, "⬜");
+            Arrays.fill(row, EMPTY_FIELD);
         }
     }
 
     public static boolean isEmptySpace(int row, int col) {
-        return board[row][col].equals("⬜");
+        return board[row][col].equals(EMPTY_FIELD);
     }
 
     public static boolean isMonster(int row, int col) {
@@ -41,7 +43,7 @@ public class Field {
     }
 
     public static void clean(int row, int col) {
-        board[row][col] = "⬜";
+        board[row][col] = EMPTY_FIELD;
     }
 
     public static void print() {
