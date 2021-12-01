@@ -9,6 +9,10 @@ public class Field {
 
     public static final int SIZE = 5;
     public static final int CENTER = SIZE / 2;
+    public static final int TOP_EDGE = 0;
+    public static final int LEFT_EDGE = 0;
+    public static final int BOTTOM_EDGE = SIZE - 1;
+    public static final int RIGHT_EDGE = SIZE - 1;
     private static final String[][] board = new String[SIZE][SIZE];
 
     private Field() {
