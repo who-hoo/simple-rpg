@@ -52,4 +52,13 @@ public class Field {
             System.out.println();
         }
     }
+
+    public static void printGameOver() {
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                System.out.print(isBomb(row, col) ? "\uD83D\uDCA3" : "\uD83D\uDCA5");
+            }
+            System.out.println();
+        }
+    }
 }

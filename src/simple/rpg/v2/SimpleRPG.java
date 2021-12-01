@@ -76,7 +76,9 @@ public class SimpleRPG {
     }
 
     private void gameOver() {
-        System.out.println("score >>>>> " + score);
+        System.out.println("Boom! Game Over");
+        Field.printGameOver();
+        System.out.println("your score >>>>> " + score);
         gameOver = true;
     }
 }
