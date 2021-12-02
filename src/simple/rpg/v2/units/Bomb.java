@@ -14,5 +14,6 @@ public class Bomb extends Unit {
         this.x = position.get("X");
         this.y = position.get("Y");
         this.shape = REAL_SHAPE;
+        this.realShape = REAL_SHAPE;
     }
 }
