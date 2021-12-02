@@ -28,7 +28,7 @@ public class Field {
     }
 
     public static boolean isBomb(int row, int col) {
-        return Bomb.REAL_SHAPE.equals(board[row][col].shape);
+        return Bomb.REAL_SHAPE.equals(board[row][col].realShape);
     }
 
     public static void put(Unit unit) {

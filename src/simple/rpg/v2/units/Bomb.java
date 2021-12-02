@@ -1,6 +1,7 @@
 package simple.rpg.v2.units;
 
 import java.util.HashMap;
+import simple.rpg.v2.Field;
 import simple.rpg.v2.RandomGenerator;
 
 public class Bomb extends Unit {
@@ -13,7 +14,7 @@ public class Bomb extends Unit {
             RandomGenerator.generateEmptyFieldPosition());
         this.x = position.get("X");
         this.y = position.get("Y");
-        this.shape = REAL_SHAPE;
+        this.shape = Field.EMPTY_FIELD;
         this.realShape = REAL_SHAPE;
     }
 }
