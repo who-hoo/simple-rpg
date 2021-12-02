@@ -20,11 +20,11 @@ public class SimpleRPG {
 
     private void initUnits() {
         p = new Player();
-        p.onField();
+        Field.put(p);
         b = new Bomb();
-        b.onField();
+        Field.put(b);
         m = new Monster();
-        m.onField();
+        Field.put(m);
     }
 
     private void getUserInput() {
@@ -53,7 +53,7 @@ public class SimpleRPG {
 
     private void refresh() {
         if (Field.isEmptySpace(p.x, p.y)) {
-            p.onField();
+            Field.put(p);
             Field.clean(p.prevX, p.prevY);
         }
         if (Field.isBomb(p.x, p.y)) {
@@ -61,11 +61,11 @@ public class SimpleRPG {
             return;
         }
         if (Field.isMonster(p.x, p.y)) {
-            p.onField();
+            Field.put(p);
             Field.clean(p.prevX, p.prevY);
             score++;
             m = new Monster();
-            m.onField();
+            Field.put(m);
         }
     }
 
